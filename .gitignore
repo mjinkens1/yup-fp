@@ -11,7 +11,8 @@
 /coverage
 
 # production
-/build
+/dist
+/example/build
 
 # misc
 .DS_Store
