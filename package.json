@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Lightweight implementation of (most of) the yup validation API",
   "main": "index.js",
+  "sideEffects": false,
   "scripts": {
     "benchmark": "NODE_ENV=production node --prof --no-logfile-per-isolate --logfile=./benchmark/out/profile.log ./benchmark/index.js && node --prof-process ./profile.log > ./benchmark/out/processed.txt",
     "build": "webpack --progress",
@@ -18,6 +19,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.3.0",
     "babel-loader": "^8.1.0",
+    "circular-dependency-plugin": "^5.2.0",
     "clean-webpack-plugin": "^3.0.0",
     "eslint": "^6.8.0",
     "jest": "^25.3.0",

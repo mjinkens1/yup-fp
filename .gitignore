@@ -11,7 +11,7 @@
 /coverage
 
 # production
-/dist
+dist/*
 /example/build
 
 # misc

@@ -1,7 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import 'yup-fp';
+import * as Y from 'yup-fp';
+
+const { validate } = Y.object({
+  inputs: Y.array(Y.length(4)),
+  maxText: {
+    top: Y.number(),
+    //   value: Y.number(Y.integer(), Y.max(Y.ref('top'))),
+    //   displayName: Y.string(Y.max(10), Y.required()),
+  },
+});
+
+console.log(validate({ inputs: [1, 2, 3, 6] }));
 
 function App() {
   return (
