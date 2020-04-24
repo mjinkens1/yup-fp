@@ -4,11 +4,11 @@ import './App.css';
 import * as Y from 'yup-fp';
 
 const { validate } = Y.object({
-  inputs: Y.array(Y.length(4)),
+  inputs: Y.array('one', 'two', Y.length(4), Y.required()),
   maxText: {
     top: Y.number(),
-    //   value: Y.number(Y.integer(), Y.max(Y.ref('top'))),
-    //   displayName: Y.string(Y.max(10), Y.required()),
+    value: Y.number(Y.integer(), Y.max(Y.ref('top'))),
+    displayName: Y.string(Y.max(10), Y.required()),
   },
 });
 
