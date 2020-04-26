@@ -1,5 +1,5 @@
 {
-  "name": "yup-fp",
+  "name": "yval",
   "version": "1.0.0",
   "description": "Lightweight implementation of (most of) the yup validation API",
   "main": "index.js",

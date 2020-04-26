@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import * as Y from 'yup-fp';
+import * as Y from 'yval';
 
 const arrayTypeMsg = (fieldName, value, type) =>
   `Field ${fieldName} must be ${type}, received ${typeof value}`;
