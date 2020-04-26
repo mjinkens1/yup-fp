@@ -3,23 +3,33 @@ import logo from './logo.svg';
 import './App.css';
 import * as Y from 'yup-fp';
 
+const arrayTypeMsg = (fieldName, value, type) =>
+  `Field ${fieldName} must be ${type}, received ${typeof value}`;
+
 const { validate } = Y.object({
-  inputs: Y.array(
-    'Must Be Array',
-    type => `Must Be ${type}`,
-    Y.length(4),
-    Y.required()
-  ),
+  inputs: Y.array(arrayTypeMsg, Y.required()),
   maxText: {
+    displayName: Y.string(Y.required('display name required')),
     top: Y.number(Y.required()),
-    value: Y.number(Y.integer(), Y.max(Y.ref('top'))),
-    displayName: Y.string(Y.max(10), Y.required()),
+    value: Y.number(Y.integer(), Y.max(Y.ref('maxText.top'))),
   },
 });
 
-console.log(validate({ inputs: [1, 2, 3, 6] }));
-
 function App() {
+  const [text, setText] = React.useState('');
+  const [validation, setValidation] = React.useState({});
+
+  React.useEffect(() => {
+    setValidation(
+      validate({
+        inputs: [1, 2, 3],
+        maxText: { top: 3, value: 6, displayName: 'MAX VALUE' },
+      })
+    );
+  }, [text]);
+
+  console.log(validation);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -35,6 +45,7 @@ function App() {
         >
           Learn React
         </a>
+        <input onChange={text => setText(text)} />
       </header>
     </div>
   );
