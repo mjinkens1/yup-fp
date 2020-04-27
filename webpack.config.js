@@ -1,6 +1,9 @@
 const path = require('path');
 
 // Plugins
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
@@ -9,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    library: 'i18n-jsfp',
+    library: 'yup-fp',
     libraryTarget: 'umd',
   },
   externals: {
@@ -33,5 +36,15 @@ module.exports = {
       },
     ],
   },
-  plugins: [new CleanWebpackPlugin()],
+  plugins: [
+    new BundleAnalyzerPlugin(),
+    new CleanWebpackPlugin(),
+    new CircularDependencyPlugin({
+      exclude: /node_modules/,
+      include: /lib/,
+      failOnError: true,
+      allowAsyncCycles: false,
+      cwd: process.cwd(),
+    }),
+  ],
 };

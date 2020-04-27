@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Lightweight implementation of (most of) the yup validation API",
   "main": "index.js",
+  "sideEffects": false,
   "scripts": {
     "benchmark": "NODE_ENV=production node --prof --no-logfile-per-isolate --logfile=./benchmark/out/profile.log ./benchmark/index.js && node --prof-process ./profile.log > ./benchmark/out/processed.txt",
     "build": "webpack --progress",
@@ -15,18 +16,24 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
+    "add": "^2.0.6",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.3.0",
     "babel-loader": "^8.1.0",
+    "circular-dependency-plugin": "^5.2.0",
     "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^3.1.0",
     "eslint": "^6.8.0",
     "jest": "^25.3.0",
     "mkdirp": "^1.0.4",
+    "ramda": "^0.27.0",
     "webpack": "^4.42.1",
+    "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.3.11",
-    "writefile": "^0.2.8"
+    "writefile": "^0.2.8",
+    "yarn": "^1.22.4"
   },
-  "dependencies": {
+  "peerDependencies": {
     "ramda": "^0.27.0"
   }
 }
