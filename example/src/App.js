@@ -11,7 +11,7 @@ const { validate } = Y.object({
   maxText: {
     displayName: Y.string(Y.required('display name required')),
     top: Y.number(Y.required()),
-    value: Y.number(Y.integer(), Y.max(Y.ref('maxText.top'))),
+    value: Y.number(Y.integer(), Y.min(2), Y.max(Y.ref('maxText.top'))),
   },
 });
 
@@ -20,13 +20,18 @@ function App() {
   const [validation, setValidation] = React.useState({});
 
   React.useEffect(() => {
-    setValidation(
-      validate({
-        inputs: [1, 2, 3],
-        maxText: { top: 3, value: 6, displayName: 'MAX VALUE' },
-      })
-    );
-  }, [text]);
+    const timer = setTimeout(() => {
+      console.log('validate');
+      setValidation(
+        validate({
+          inputs: [1, 2, 3],
+          maxText: { top: 3, value: 6, displayName: 'MAX VALUE' },
+        })
+      );
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   console.log(validation);
 
